@@ -1,0 +1,89 @@
+// ID identifying the cluster to create. Use your username so that resources created can be tracked back to you.
+cluster_id = "desa-ocp01"
+
+// Domain of the cluster. This should be "${cluster_id}.${base_domain}".
+cluster_domain = "desa-ocp01.mininterior.gob.ar"
+
+// Base domain from which the cluster domain is a subdomain.
+base_domain = "mininterior.gob.ar"
+
+// Name of the vSphere server.
+vsphere_server = "vcenter.mininterior.gob.ar"
+
+// User on the vSphere server.
+vsphere_user = "openshift@vsphere.local"
+
+// Password of the user on the vSphere server.
+vsphere_password = "R3dH4t20*"
+
+// Name of the vSphere cluster.
+vsphere_cluster = "Cluster Desarrollo"
+
+// Name of the vSphere data center.
+vsphere_datacenter = "Min Interior"
+
+// Name of the vSphere data store to use for the VMs.
+vsphere_datastore = "OCS_VMP-DESA"
+
+// Name of the VM template to clone to create VMs for the cluster.
+vm_template = "rhcos-4.3.8"
+
+// Name of the VM network to attach to
+vm_network = "Red 644"
+
+// Name of the folder where the OCP cluster VMs will be created
+// The path is relative to the vCenter root
+vm_folder = "desa-ocp01"
+
+// The name of the Resource Pool where the OCP cluster VMs will be assigned
+// The default Resource Pool for the vCenter Cluster is Resources
+// You can find all the Resource Pools available with govc find / -type p
+vm_resource_pool = "Resource"
+
+// The machine_cidr where IP addresses will be assigned for cluster nodes.
+// Additionally, IPAM will assign IPs based on the network ID.
+machine_cidr = "10.6.244.0/24"
+
+// The DNS servers:
+dns_ips = ["192.168.242.111", "192.168.242.112", "192.168.242.112"]
+
+// The gateway IP:
+gateway_ip = "10.6.244.1"
+
+// Set ipam and ipam_token if you want to use the IPAM server to reserve IP
+// addresses for the VMs.
+
+// Address or hostname of the IPAM server from which to reserve IP addresses for the cluster machines.
+//ipam = "139.178.89.254"
+
+// Token to use to authenticate with the IPAM server.
+//ipam_token = "TOKEN_FOR_THE_IPAM_SERVER"
+
+// Base URL for accesing the ignition files: bootstrap.ign, master.ign and worker.ign through HTTP.
+// This needs to be publicly accessible so that the nodes will pull their ignition files from this source.
+ignition_url = "http://bastion.desa-ocp01.mininterior.gob.ar/ignition"
+
+// Set bootstrap_ip, control_plane_ip, and compute_ip if you want to use static
+// IPs reserved someone else, rather than the IPAM server.
+
+// The IP address to assign to the bootstrap VM.
+bootstrap_name = ["bootstrap"]
+bootstrap_ip = ["10.6.244.116"]
+bootstrap_memory = ["16384"]
+bootstrap_cpus = ["4"]
+
+// The IP addresses to assign to the control plane VMs. The length of this list
+// must match the value of control_plane_count.
+control_plane_count = 3
+control_plane_names = ["master-0", "master-1", "master-2"]
+control_plane_ips = ["10.6.244.104", "10.6.244.105", "10.6.244.106"]
+control_plane_memory = ["16384", "16384", "16384"]
+control_plane_cpus = ["4", "4", "4"]
+
+// The IP addresses to assign to the compute VMs. The length of this list must
+// match the value of compute_count.
+compute_count = 9
+compute_names = ["infra-0", "infra-1", "infra-2", "ocs-0", "ocs-1", "ocs-2", "worker-0", "worker-1", "worker-2"]
+compute_ips = ["10.6.244.107", "10.6.244.108", "10.6.244.109", "10.6.244.110", "10.6.244.111", "10.6.244.112", "10.6.244.113", "10.6.244.114", "10.6.244.115"]
+compute_memory = ["24576", "24576", "24576", "24576", "24576", "24576", "16384", "16384", "16384"]
+compute_cpus = ["4", "4", "4", "12", "12", "12", "4", "4", "4"]

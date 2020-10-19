@@ -1,0 +1,3 @@
+time="2020-10-16T08:55:49-03:00" level=debug msg="OpenShift Installer 4.5.14"
+time="2020-10-16T08:55:49-03:00" level=debug msg="Built from commit 9893a482f310ee72089872f1a4caea3dbec34f28"
+time="2020-10-16T08:55:49-03:00" level=fatal msg="loading kubeconfig: stat desa-ocp01/auth/kubeconfig: no such file or directory"
